@@ -1,0 +1,9 @@
+#!/bin/bash
+set -euo pipefail
+
+if [[ "${BUILDKITE_PLUGIN_PODMAN_CLEANUP:-true}" =~ ^(true|on|1)$ ]] ; then
+  for container in $(podman ps -a -q --filter "label=com.buildkite.job-id=${BUILDKITE_JOB_ID}") ; do
+    echo "~~~ Cleaning up left-over container ${container}"
+    podman stop "$container"
+  done
+fi
