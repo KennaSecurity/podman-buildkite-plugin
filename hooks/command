@@ -67,9 +67,10 @@ is_macos() {
 }
 
 tty_default='on'
-init_default='on'
+init_default='off'
 mount_agent_default='on'
 mount_ssh_agent=''
+privileged_default='true'
 pwd_default="$PWD"
 workdir_default="/workdir"
 
@@ -243,7 +244,7 @@ while IFS='=' read -r name _ ; do
 done < <(env | sort)
 
 # Privileged container
-if [[ "${BUILDKITE_PLUGIN_PODMAN_PRIVILEGED:-false}" =~ ^(true|on|1)$ ]] ; then
+if [[ "${BUILDKITE_PLUGIN_PODMAN_PRIVILEGED:-$privileged_default}" =~ ^(true|on|1)$ ]] ; then
     args+=( "--privileged" )
 fi
 
