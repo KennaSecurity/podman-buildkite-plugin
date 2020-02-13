@@ -1,0 +1,13 @@
+steps:
+  - label: ":podman: :hammer:"
+    plugins:
+      kennasecurity/podman-compose:
+        run: tests
+
+  - wait
+
+  - label: ":electric_plug: Run the plugin"
+    command: "echo 'Hello, world!'"
+    plugins:
+      kennasecurity/podman#${BUILDKITE_COMMIT}:
+        image: docker.io/centos:8
