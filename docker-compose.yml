@@ -1,6 +1,8 @@
 version: '2'
 services:
   tests:
+    # This image, provided by Buildkite, runs `bats tests/` as its default command
+    # See: https://github.com/buildkite-plugins/buildkite-plugin-tester/blob/master/Dockerfile
     image: docker.io/buildkite/plugin-tester
     volumes:
       - ".:/plugin:z"

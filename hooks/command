@@ -67,6 +67,8 @@ is_macos() {
 }
 
 tty_default='on'
+# init_default can be switched back to 'on' once this issue is resolved:
+# https://github.com/containers/libpod/issues/4159
 init_default='off'
 mount_agent_default='on'
 mount_ssh_agent=''
